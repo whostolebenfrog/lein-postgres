@@ -1,26 +1,44 @@
 # lein-postgres
 
-A Leiningen plugin to do many wonderful things.
+A lein plugin that starts up an "embedded" postgres instance to be used when running tests / during development.
+
+In effect it works as a wrapper around OpenTable's embedded postgres JUnit helper. https://github.com/opentable/otj-pg-embedded
 
 ## Usage
 
-FIXME: Use this for user-level plugins:
+Add `[lein-postgres "0.1.1"]` to the plugins vector in your project.clj file.
 
-Put `[lein-postgres "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your
-`:user` profile, or if you are on Leiningen 1.x do `lein plugin install
-lein-postgres 0.1.0-SNAPSHOT`.
+A postgres instance can then be started with `lein postgres`
 
-FIXME: Use this for project-level plugins:
+This will start a postgres instance and wait until you send it kill command with `ctrl+c`
 
-Put `[lein-postgres "0.1.0-SNAPSHOT"]` into the `:plugins` vector of your project.clj.
+You can also start a postgres instance and run other lein tasks by passing them as a second argument.
 
-FIXME: and add an example usage that actually makes sense:
+`lein postgres test`
 
-    $ lein postgres
+This will start postgres, run your tests (which presumably depend on postgres) before closing postgres and cleaning up.
+
+## Config
+
+You can configure lein-postgres with a config map in your project.clj
+
+```
+(defproject  "1.0.0-SNAPSHOT"
+  :plugins [[lein-postgres "0.1.1"]]
+  :postgres {:port 12345 ;optional, defaults to a random free port
+             :clean-data-directory true ;optional, defaults to true - should we cleanup the data directory on close
+             :data-directory "/tmp/embeddedpostgres" ;optional, sets the temporary data directory
+             :server-config {"max_connections" : 300}} ;optional, allows you to set additional server config options
+```
+
+See https://github.com/opentable/otj-pg-embedded/blob/master/src/main/java/com/opentable/db/postgres/embedded/EmbeddedPostgreSQL.java for more information on additional server-config options.
+
+## Thanks
+
+That's to OpenTable for the excellent embedded postgres plugin and Joe Littlejohn for lein-embongo which was used as a base for some of the code here.
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 Ben Griffiths
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License - just like Clojure.
