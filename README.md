@@ -35,7 +35,7 @@ See [here](https://github.com/opentable/otj-pg-embedded/blob/master/src/main/jav
 
 ## Thanks
 
-That's to OpenTable for the excellent embedded postgres plugin and Joe Littlejohn for [lein-embongo](https://github.com/joelittlejohn/lein-embongo) which was used as a base for some of the code here.
+Thanks to OpenTable for the excellent embedded postgres plugin and Joe Littlejohn for [lein-embongo](https://github.com/joelittlejohn/lein-embongo) which was used as a base for some of the code here.
 
 ## License
 
