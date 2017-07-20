@@ -28,7 +28,7 @@ You can configure lein-postgres with a config map in your project.clj
   :postgres {:port 12345 ;optional, defaults to a random free port
              :clean-data-directory true ;optional, defaults to true - should we cleanup the data directory on close
              :data-directory "/tmp/embeddedpostgres" ;optional, sets the temporary data directory
-             :server-config {"max_connections" : 300}} ;optional, allows you to set additional server config options
+             :server-config {:max_connections "300"}} ;optional, allows you to set additional server config options
 ```
 
 See [here](https://github.com/opentable/otj-pg-embedded/blob/master/src/main/java/com/opentable/db/postgres/embedded/EmbeddedPostgreSQL.java) for more information on additional server-config options.
