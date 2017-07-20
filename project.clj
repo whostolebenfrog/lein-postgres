@@ -4,4 +4,4 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :eval-in-leiningen true
-  :dependencies [[com.opentable.components/otj-pg-embedded "0.4.0"]])
+  :dependencies [[com.opentable.components/otj-pg-embedded "0.9.0"]])
