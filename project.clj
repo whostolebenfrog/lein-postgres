@@ -5,5 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :eval-in-leiningen true
   :dependencies [[com.opentable.components/otj-pg-embedded "0.9.0"]]
-  :plugins [[s3-wagon-private "1.3.0"]]
-  :repositories [["compt" {:url "s3p://maven.compt.io/releases" :no-auth true}]])
+  :plugins [[s3-wagon-private "1.3.2"]]
+  :repositories [["compt" {:url "s3p://private-maven.compt.io/releases"
+                           :no-auth true
+                           :sign-releases false}]])
