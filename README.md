@@ -1,5 +1,7 @@
 # lein-postgres
 
+[![Clojars Project](https://img.shields.io/clojars/v/lein-postgres.svg)](https://clojars.org/lein-postgres)
+
 A lein plugin that starts up an "embedded" postgres instance to be used when running tests / during development.
 
 Currently targets postgres 10.6 as this is the latest provided by OpenTable.
