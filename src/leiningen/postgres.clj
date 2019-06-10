@@ -21,20 +21,28 @@
   (let [clean-data-directory? (get (project :postgres) :clean-data-directory)
         data-directory (get (project :postgres) :data-directory)
         server-config (get (project :postgres) :server-config)
-        port (get (project :postgres) :port)]
-    (.start (cond-> (EmbeddedPostgres/builder)
+        port (get (project :postgres) :port)
+        databases (get (project :postgres) :databases)
+        db (.start (cond-> (EmbeddedPostgres/builder)
 
-                    port
-                    (.setPort port)
+                     port
+                     (.setPort port)
 
-                    clean-data-directory?
-                    (.setCleanDataDirectory clean-data-directory?)
+                     clean-data-directory?
+                     (.setCleanDataDirectory clean-data-directory?)
 
-                    data-directory
-                    (.setDataDirectory (File. data-directory))
+                     data-directory
+                     (.setDataDirectory (File. data-directory))
 
-                    server-config
-                    (apply-server-config server-config)))))
+                     server-config
+                     (apply-server-config server-config)))]
+    (let [conn (.getConnection (.getPostgresDatabase db))
+          statement (.createStatement conn)]
+      (doseq [database databases]
+        (let [create-str (str "CREATE DATABASE " database)]
+          (println create-str)
+          (.execute statement create-str))))
+    db))
 
 (defn postgres
   "Run postgres in memory"

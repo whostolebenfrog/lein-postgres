@@ -32,6 +32,7 @@ You can configure lein-postgres with a config map in your project.clj
   :postgres {:port 12345 ;optional, defaults to a random free port
              :clean-data-directory true ;optional, defaults to true - should we cleanup the data directory on close
              :data-directory "/tmp/embeddedpostgres" ;optional, sets the temporary data directory
+             :databases ["test_db"] ; optional, creates databases named in this array
              :server-config {"max_connections" 300}} ;optional, allows you to set additional server config options
 ```
 
