@@ -10,7 +10,7 @@ In effect it works as a wrapper around [OpenTable's embedded postgres JUnit help
 
 ## Usage
 
-Add `[lein-postgres "0.1.2"]` to the plugins vector in your project.clj file.
+Add `[lein-postgres "0.1.4"]` to the plugins vector in your project.clj file.
 
 A postgres instance can then be started with `lein postgres`
 
