@@ -1,4 +1,4 @@
-(defproject lein-postgres "0.1.5-SNAPSHOT"
+(defproject lein-postgres "0.1.5"
   :description "Lein plugin wrapping the open table java embedded postgres component"
   :url "http://github.com/whostolebenfrog/lein-postgres"
   :license {:name "Eclipse Public License"
