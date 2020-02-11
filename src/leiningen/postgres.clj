@@ -1,7 +1,8 @@
 (ns leiningen.postgres
   (:require [leiningen.core.main :as main])
   (:import [com.opentable.db.postgres.embedded EmbeddedPostgres]
-           [java.io File]))
+           [java.io File]
+           (java.lang ProcessBuilder$Redirect)))
 
 (defn- config-value
   "Get a value from project config or, optionally, use a default value."
@@ -32,10 +33,14 @@
                      (.setCleanDataDirectory clean-data-directory?)
 
                      data-directory
-                     (.setDataDirectory (File. data-directory))
+                     (.setDataDirectory (File. ^String data-directory))
 
                      server-config
-                     (apply-server-config server-config)))]
+                     (apply-server-config server-config)
+
+                     :always (doto
+                               (.setErrorRedirector ProcessBuilder$Redirect/INHERIT)
+                               (.setOutputRedirector ProcessBuilder$Redirect/INHERIT))))]
     (let [conn (.getConnection (.getPostgresDatabase db))
           statement (.createStatement conn)]
       (doseq [database databases]
