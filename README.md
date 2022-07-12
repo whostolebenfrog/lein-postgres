@@ -4,6 +4,8 @@
 
 A lein plugin that starts up an "embedded" postgres instance to be used when running tests / during development.
 
+Warning - this project will not work on an M1 Mac. I don't have one yet to verify but it sounds like some issues downstream. Running postgres in a docker container is a good workaround for right now.
+
 Currently targets postgres 10.6 as this is the latest provided by OpenTable.
 
 In effect it works as a wrapper around [OpenTable's embedded postgres JUnit helper](https://github.com/opentable/otj-pg-embedded).
